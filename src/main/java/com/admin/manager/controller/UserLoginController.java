@@ -16,7 +16,12 @@ public class UserLoginController {
 	
 	@Autowired
 	private UserLoginService loginService;
-	
+	/**
+	 * 登录接口
+	 * @param username
+	 * @param password
+	 * @return
+	 */
 	@RequestMapping(value="/user/login",method=RequestMethod.POST)
 	@ResponseBody
 	public ResultData login(String username,String password) {
