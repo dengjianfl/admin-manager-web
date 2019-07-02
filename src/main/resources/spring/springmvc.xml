@@ -10,9 +10,19 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
 
 	<context:component-scan base-package="com.admin.manager.controller" />
-	<!-- <context:property-placeholder location="classpath:resource/resource.properties" /> -->
+	<context:component-scan base-package="com.admin.manager.web.vo" />
+	
+	<context:property-placeholder location="classpath:resource/resource.properties" />
 	
 	<mvc:annotation-driven />
+	
+	<!-- 配置拦截器,用于拦截登录超时的情况-->
+	<mvc:interceptors>
+		<mvc:interceptor> 	
+			<mvc:mapping path="/**/*.do" />
+			<bean class="com.admin.manager.interceptor.SsoInterceptor"></bean>
+		</mvc:interceptor> 
+	</mvc:interceptors>
 	
 	<!-- 引用dubbo服务 -->
 	<dubbo:application name="admin-manager-web"/>
