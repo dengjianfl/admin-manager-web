@@ -42,10 +42,27 @@ public class UserLoginController {
 		return result;
 	}
 	
-	@RequestMapping(value="/user/test.do",method=RequestMethod.POST)
+	/**
+	 * 获取当前登录人信息
+	 * @param token
+	 * @return
+	 */
+	@RequestMapping(value="/user/getInfo.do",method=RequestMethod.POST)
 	@ResponseBody
-	public ResultData test(HttpServletRequest request,HttpServletResponse response,String username,String password) {
-		ResultData result = ResultData.build(true, "成功");
+	public ResultData getInfo(String token) {
+		ResultData result = loginService.getUserByToken(token);
+		return result;
+	}
+	
+	/**
+	 * 退出登录
+	 * @param token
+	 * @return
+	 */
+	@RequestMapping(value="/user/logOut.do",method=RequestMethod.POST)
+	@ResponseBody
+	public ResultData logOut(String token) {
+		ResultData result = loginService.logOut(token);
 		return result;
 	}
 	

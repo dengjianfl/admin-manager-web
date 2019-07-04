@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -17,6 +18,9 @@ public class SsoInterceptor implements HandlerInterceptor {
 	
 	@Autowired
 	private UserLoginService loginService;
+	
+	@Value("${DJ_TOKEN_KEY}")
+	private String DJ_TOKEN_KEY;
 
 	@Override
 	public void afterCompletion(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, Exception arg3)
@@ -61,7 +65,7 @@ public class SsoInterceptor implements HandlerInterceptor {
         	// System.out.println("DJ_TOKEN_KEY的值是===>"+DJ_TOKEN_KEY);
         	if (arr != null) {
         		for(Cookie s: arr){
-    				if (s.getName().equals("DJ_TOKEN")) {
+    				if (s.getName().equals(DJ_TOKEN_KEY)) {
     					token = s.getValue();
     					break;
     				}
