@@ -22,7 +22,7 @@ public class UserRegisterController {
 	
 	@RequestMapping(value="/user/register",method=RequestMethod.POST)
 	@ResponseBody
-	public ResultData login(User user) {
+	public ResultData register(User user) {
 		ResultData result = registerservice.register(user);
 		return result;
 	}
