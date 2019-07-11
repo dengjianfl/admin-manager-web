@@ -75,4 +75,11 @@ public class ArticleController {
 		return result;
 	}
 	
+	@RequestMapping(value="/article/deleteAnArticle.do",method=RequestMethod.POST)
+	@ResponseBody
+	public ResultData deleteAnArticle(Long id) {
+		ResultData result = articleService.deleteAnArticle(id);
+		return result;
+	}
+	
 }
